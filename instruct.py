@@ -40,7 +40,8 @@ def extract_docx(file):
 
 def extract_img(image_file):
     image_bytes = image_file.read()
-    content_type = "image/png"  # Assuming PNG, modify if needed
+    img = Image.open(io.BytesIO(image_bytes))
+    content_type = f"image/{img.format.lower()}"
     base64_image = base64.b64encode(image_bytes).decode("utf-8")
     return f"data:{content_type};base64,{base64_image}"
 
